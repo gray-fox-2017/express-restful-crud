@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Todo</title>
+  </head>
+  <body>
+    <form action="/todo/update/<%= todos.user_email%>/<%= todos.id %>" method="post">
+      <input type="text" name="task" value="<%= todos.title %>">
+      <% if(todos.is_complete === false){ %>
+        <select name="status">
+          <option value="false">Uncomplete</option>
+          <option value ="true">Completed</option>
+        </select>
+      <% } else { %>
+        <select name="status">
+          <option value="true">Complete</option>
+          <option value ="false">Uncomplete</option>
+        </select>
+      <% } %>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
