@@ -1,0 +1,110 @@
+<%- include ./partials/header.ejs %>
+  <body>
+    <div class="container">
+      <h4>New Task</h4>
+      <form class="/tasks" action="" method="post">
+        <div class="row">
+          <div class="input-field col s6">
+            <input type="text" id="task" name="task" value="" required class="validate">
+            <label for="task">Task</label>
+          </div>
+          <div class="input-field col s6">
+            <input type="text" id="UserId" name="UserId" value="" required class="validate">
+            <label for="UserId">User ID</label>
+          </div>
+        </div>
+        <button class="waves-effect waves-light btn" type="submit">Submit</button>
+      </form>
+      <br><br>
+
+      <hr style="margin-bottom: 40px">
+      <h3>TODO LIST</h3>
+      <table class="striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Completeness</th>
+            <th>User Email</th>
+            <th>CreatedAt</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach((d) => {  %>
+          <tr>
+            <td class="titleTodo"><%= d.title %></td>
+            <% if (!data.is_complete || null) {%>
+              <td>belum selesai</td> <% } else { %>
+              <td>selesai</td> <% } %>
+            <% if (d.User !== null) {%>
+            <td><%= d.User.email %></td><% } else { %>
+            <td>-</td> <% } %>
+            <td><%= d.createdAt %></td>
+            <td>
+              <a href='#modal2'>edit</a>
+              <a href="#modal<%= d.id %>">delete</a>
+            </td>
+          </tr>
+          <!-- Modal Structure DELETE -->
+          <div id="modal<%= d.id %>" class="modal">
+            <div class="modal-content">
+              <h5>Delete this task?</h5>
+              <p><%= d.title %></p>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">NO</a>
+              <a href="/tasks/delete/<%= d.id %>" class="modal-action waves-effect waves-green btn-flat" method="post">YES</a>
+            </div>
+          </div>
+          <% }) %>
+        </tbody>
+      </table>
+
+      <!-- Modal Structure EDIT -->
+      <div id="modal2" class="modal bottom-sheet">
+        <div class="modal-content">
+          <h4>Modal Header</h4>
+          <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </body>
+  <script type="text/javascript">
+    $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+    });
+
+    // When element .element clicked
+    $('.element').click(function(e){
+        // Set the content in a variable
+        // This can be dynamically generated from elements on the page
+        // E.g. var content = $('#textarea').val(); - This will grab the value of a form element with the ID #textarea
+        // OR var content = $('#div').html(); - Will get the content from a div with the ID #div
+
+        // Satic text content for this example
+        var content = $('.titleTodo').html();
+
+        // Call the function to open the popup with the content from var = content
+        openPopup(content);
+    });
+    // Function to open the popup
+    function openPopup(content){
+        winpops = window.open(
+            // Setup - URL,name,specs,replace
+            '',
+            'Popup Name',
+            'fullscreen=no, toolbar=yes, status=yes, menubar=yes, scrollbars=yes, resizable=yes, directories=yes, location=yes, width=500, height=400, left=100, top=100, screenX=100, screenY=100');
+
+        // Write the content to the popup
+        winpops.document.write('<div id="content">'+content+'</div>');
+    }
+  </script>
+</html>
