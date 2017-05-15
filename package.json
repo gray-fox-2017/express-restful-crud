@@ -1,0 +1,19 @@
+{
+  "name": "express-restful-crud",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gray-fox-2017/express-restful-crud.git"
+  },
+  "author": "james sraun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gray-fox-2017/express-restful-crud/issues"
+  },
+  "homepage": "https://github.com/gray-fox-2017/express-restful-crud#readme"
+}
