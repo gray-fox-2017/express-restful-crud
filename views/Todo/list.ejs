@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Todo App</title>
+  </head>
+  <body>
+    <h1> Add Todo </h1>
+  
+    <form action="/todo/add/<%= email %>" method="post">
+      <input type="text" name="task" placeholder="input your todo here">
+      <button type="submit">Submit</button>
+    </form>
+    <div class="container">
+      <div class="row">
+        <table>  
+          <thead>
+            <tr>
+              <td>ID</td>
+              <td>Task</td>
+              <td>Status</td>
+            </tr>
+            </thead>
+            <tbody>
+                <% let i = 1;todos.forEach((t)=>{ %>
+              <tr>
+                <td><%= i++ %></td>
+                <td><%= t.title %></td>
+                <% if(t.is_complete === false){ %>
+                  <td>Uncomplete</td>
+              <%  } else { %>
+                <td>Completed</td>
+              <% } %> 
+              <td><%= t.user_email %></td>
+              <td><%= new_date.format_date(t.createdAt) %></td> 
+              </tr>  
+                <td><a href="/todo/edit/<%= t.id %>">Edit</a> | <a href="/todo/delete/<%= t.user_email %>/<%= t.id %>">Delete</a></td>
+              <%  }) %>
+            </tbody>      
+        </table>  
+      </div>    
+    </div>  
+  </body>
+</html>
