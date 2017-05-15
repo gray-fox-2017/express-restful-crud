@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models')
+const helper = require('../helper/helpers')
 
 router.get('/list/:email', function(req, res, next) {
   db.Todo.findAll({
@@ -10,7 +11,7 @@ router.get('/list/:email', function(req, res, next) {
   })
   .then((data)=>{
     console.log(data);
-      res.render(`Todo/list`,{todos:data, email: req.params.email});
+      res.render(`Todo/list`,{todos:data, email: req.params.email, new_date:helper});
   })
 });
 

@@ -30,7 +30,9 @@
                   <td>Uncomplete</td>
               <%  } else { %>
                 <td>Completed</td>
-              <% } %>  
+              <% } %> 
+              <td><%= t.user_email %></td>
+              <td><%= new_date.format_date(t.createdAt) %></td> 
               </tr>  
                 <td><a href="/todo/edit/<%= t.id %>">Edit</a> | <a href="/todo/delete/<%= t.user_email %>/<%= t.id %>">Delete</a></td>
               <%  }) %>
