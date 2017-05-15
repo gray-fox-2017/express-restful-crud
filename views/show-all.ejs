@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>To-do-List Mu!</title>
+    <%- include ./partial/stylenya.ejs %>
+  </head>
+  <body>
+    <div style="padding: 5% 5% 10% 5%">
+      <h3>Your Full To Do List</h3>
+      <table class="striped">
+        <thead>
+        <tr>
+          <th style="padding-left: 30px;">No.</th>
+          <th>Task</th>
+          <th>Completed?</th>
+          <th>Email User</th>
+          <th>Tanggal dibuat</th>
+          <th>Option</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let i=0; i<data.length;i++) { %>
+          <tr>
+
+            <td style="padding-left: 30px;"><%= i+1 %></td>
+            <td><%= data[i].task %>&nbsp &nbsp &nbsp &nbsp <a href="/user/todo-edit/<%=data[i].id%>"><i class="tiny material-icons">mode_edit</i></a></td>
+            <% if (data[i].is_complete === true) { %>
+                  <td>Sudah</td>
+                <% } else { %>
+                  <td>Belum</td>
+                <% } %>
+            <% if (data[i].User !== null) { %>
+                 <td><%= data[i].User.email%></td>
+            <%   } else { %>
+                 <td>No email Registered</td>
+            <%   } %>
+
+            <td><%= helper(data[i].createdAt) %></td>
+            <td><a href="/user/todo/<%=data[i].id%>"><i class="small material-icons">done_all</i>&nbsp &nbsp &nbsp &nbsp</a><a href="/user/todo-delete/<%=data[i].id%>" onClick="return confirm('anda yakin?')"><i class="small material-icons">delete</i></a><td>
+
+          </tr>
+        <% } %>
+      </tbody>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>To Do List</title>
+    <%- include ./partial/stylenya.ejs %>
+  </head>
+  <body>
+  <div style="margin: 30% 5% auto 5%">
+    <form method="post" action="/user/update/<%=data.id%>">
+      <input type="text" name="taskBaru" value="<%=data.task%>"placeholder="<%=data.task%>">
+      <button class="btn waves-effect waves-light" type="submit">SAVE!!</button>
+    <form>
+  </div>
+  </body>
+</html>
