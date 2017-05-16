@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Memo List</title>
+    <%- include('./partials/head.ejs')%>
+  </head>
+  <body>
+    <div class="container">
+      <div class="center-align">
+        <h1>Memo List</h1>
+        <table class="striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Complete</th>
+              <th>createdAt</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% todos.forEach( (todo)=>{ %>
+            <tr>
+             <td><%= todo.id %></td>
+             <td><%= todo.title %></td>
+             <td>
+               <% if (todo.is_complete == 0) { %>
+                 <a href='/users/complete/<%= todo.id%>/<%= todo.user_id %>' target = '_self' class=""><i class="material-icons">stop</i></a></td>
+              <% } else  if (todo.is_complete == 1) { %>
+                <i class="small material-icons">done</i>
+              <% } %>
+             <td><%= helper.changeDate(todo.createdAt) %></td>
+             <td>
+               <% if (todo.is_complete == 0) { %>
+               <a href="/users/edit/<%= todo.id%>/<%= todo.user_id%>" class="" target="_self"><i class="small material-icons">mode_edit</i></a>
+               <a href="/users/delete/<%= todo.id%>/<%= todo.user_id%>" class="" target="_self" onclick="return confirm('Are you sure?')"><i class="small material-icons">delete</i></a></td>
+               <% } %>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <form method="get" action="/users/insert/<%=id%>">
+        <input type ="submit" value="Insert new todo" class="btn-large">
+      <form>
+    </div>
+
+
+  </body>
+  <%- include('./partials/footer.ejs')%>
+</html>

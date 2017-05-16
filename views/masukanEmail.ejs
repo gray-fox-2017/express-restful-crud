@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>Welcome</title>
+    <%- include('./partials/head.ejs')%>
+  </head>
+  <body>
+    <div class="container">
+      <div class="">
+        <h2>Hi there</h2>
+      </div>
+      <form method="post" action="/users">
+        <input type ="email" name="txtEmail" required placeholder="email"/>
+        <input type ="submit" value="Submit email" class="btn-large green darken-4 z-depth-2">
+      <form>
+    </div>
+
+
+  </body>
+  <%- include('./partials/footer.ejs')%>
+</html>
