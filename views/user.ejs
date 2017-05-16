@@ -6,7 +6,7 @@
   </head>
   <body>
     <h3 style="padding: 10% 15% 0 15%">Berikut list mu!</h3>
-    <h6 style="padding: 0 15% 0 15%">user : <%= user%> &nbsp &nbsp &nbsp - &nbsp &nbsp &nbsp email : <%= email%></h6>
+    <h6 style="padding: 0 15% 0 15%"> ID : <%=id%> &nbsp &nbsp &nbsp User : <%= user%></h6>
     <div style="padding: 5% 15% 10% 15%">
       <table class="striped">
         <thead>
@@ -30,7 +30,7 @@
                   <td>Belum</td>
                 <% } %>
             <td><%= helper(data[i].createdAt) %></td>
-            <td><a href="/user/todo/<%=data[i].id%>"><i class="small material-icons">done_all</i>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</a><a href="/user/todo-delete/<%=data[i].id%>" onClick="return confirm('anda yakin?')"><i class="small material-icons">delete</i></a><td>
+            <td><a href="/user/todo/<%=data[i].user_id%>/<%=data[i].id%>"><i class="small material-icons">done_all</i>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</a><a href="/user/todo-delete/<%=data[i].user_id%>/<%=data[i].id%>" onClick="return confirm('anda yakin?')"><i class="small material-icons">delete</i></a><td>
 
           </tr>
         <% } %>
@@ -39,7 +39,7 @@
     </div>
     <div style="padding: 0 15% 5% 15%">
       <h5>Tambah task baru:</h5>
-    <form method="post" action="/user">
+    <form method="post" action="./buat-baru">
       <input type="text" name="aidi" placeholder="id jangan di ganti" value=<%=id%>>
       <input type="text" name="taskBaru" placeholder="Task baru">
       <button type="submit">Add!</button>
