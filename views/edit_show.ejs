@@ -21,12 +21,17 @@
           <h2 align='center'>Write Your Memo's</h2>
           <hr>
           <form action="/shows/edit/<%= data.id%>" method="post">
-            <textarea name="title" rows="8" cols="80"></textarea>
+            <textarea name="title" rows="8" cols="80"><%=data.title %>></textarea>
             <div class="form-group">
               <select name="is_complete">
-                  <option value="" disabled selected="">Choose status</option>
-                  <option value="uncomplete">uncomplete</option>
-                  <option value="complete">complete</option>
+                  <option value="<%=data.is_complete %>"><%=data.is_complete %></option>
+                  <%if (data.is_complete === "completed") { %>
+                      <option value="uncomplete">uncomplete</option>
+                    <%} else {%>
+                      <option value="complete">complete</option>
+                    <%
+                      }
+                    %>
               </select>
               <select name='id_user' required>
                    <option value='' disabled selected>Choose email</option>

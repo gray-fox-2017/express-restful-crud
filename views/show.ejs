@@ -42,7 +42,7 @@
                 <td><%= value.title%></td>
                 <td><%= value.is_complete%></td>
                 <td><%= value.user.email%></td>
-                <!-- <td><%= helper.dateFormat(value.createdAt)%></td> -->
+                <td></td>
                 <td><a href="/shows/edit/<%=value.id%>">EDIT</a> | <a href="/shows/delete/<%=value.id%>" onclick="confirm('Are you Sure want to delete?')">DELETE</a></td>
               </tr>
               <%
