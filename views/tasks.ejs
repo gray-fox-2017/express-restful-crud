@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/head.ejs %>
+  </head>
+  <body>
+    <% include partials/header.ejs %>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Add new task:</h1>
+          <form method="post">
+            <input type="text" name="task" placeholder="Task">
+            <select name="email" placeholder="Select your account">
+              <% users.forEach(user => { %>
+                <option value="<%- user.email %>"><%- user.email %></option>
+              <% }) %>
+            </select>
+            <button type="submit" name="button">Add Task</button>
+            <a class="btn btn-primary btn-md" href="/" role="button"> Register</a>
+          </form>
+
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Here are your tasks:</h1>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <table class = "table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Task</th>
+                <th>Status</th>
+                <th>Created At</th>
+                <th>User Email</th>
+                <th>Option</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%
+              let hitung = 1;
+              todos.forEach(todo => {
+                let status;
+                let option;
+                if(todo.is_complete) {
+                  status = 'done'
+                  option = 'Undone'
+                } else {
+                  status = 'incomplete'
+                  option = 'Done'
+                }
+              %>
+              <tr>
+                <td><%- hitung %></td>
+                <td><%- todo.title %></td>
+                <td><%- status %></td>
+                <td><%- util.dateParser(todo.createdAt) %></td>
+                <% users.forEach(user => {
+                  if(user.id == todo.UserId) { %>
+                <td><%- user.email %></td>
+                <%
+                  }
+                })
+                %>
+                <!-- <td></td> -->
+                <td><a class="btn btn-danger btn-sm" href=/tasks/delete/<%-todo.id%> role="button" onclick="return confirm('Are you sure')">Delete</a> <a class="btn btn-success btn-sm" href=/tasks/edit/<%-todo.id%> role="button">Edit</a></td>
+              </tr>
+              <%
+                hitung++;
+                });
+              %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <% include partials/footer.ejs %>
+  </body>
+</html>
