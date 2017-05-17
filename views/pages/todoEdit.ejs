@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body>
+  <div class="container">
+    <% include ../partials/nav %>
+      <div class="col-md-4">
+        <h3>EDIT USER</h3>
+        <form action="/todo/edit/<%-memo.id%>" method="post">
+          <div class="form-group">
+            <label>Title</label>
+            <input class="form-control" type="text" name="title" Value="<%=memo.title%>">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Edit</button>
+          </div>
+        </form>
+      </div>
+  </div>
+
+</body>
+
+</html>

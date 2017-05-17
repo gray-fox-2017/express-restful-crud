@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body>
+
+  <div class="container" >
+    <div class="header clearfix" style=" margin-bottom: 30px">
+      <% include ../partials/nav %>
+
+    </div>
+    <div class="col-md-4">
+      <label style="margin-bottom:30px">ADD TODO
+        <a href="/todo/add"><button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></button></a>
+      </label>
+    </div>
+
+    <div class="container">
+
+      <table class="table">
+        <thead class="thead-inverse">
+          <tr>
+            <th>#</th>
+            <th class="text-center">Todo</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">User</th>
+            <th class="text-center">Created Date</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% memos.forEach((memo,i)=> {%>
+            <tr>
+              <td class="text-left">
+                <%-i+1%>
+              </td>
+              <td class="text-center">
+                <%-memo.title%>
+              </td>
+              <%if(memo.is_complete){%>
+              <td class="text-center">
+                <i class="glyphicon glyphicon-ok" aria-hidden="true"></i>
+              </td>
+              <%}else{%>
+              <td class="text-center">
+                <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+              </td>
+              <%}%>
+              <td class="text-center">
+                <%-memo.email%>
+              </td>
+              <td class="text-center">
+                <%-dateFormatter(memo.createdAt)%>
+              </td>
+              <td class="text-center">
+                <%if(!memo.is_complete){%>
+                <a href="/todo/change/<%-memo.id%>"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-ok" aria-hidden="true"></i></button></a>
+                <%}else{%>
+                <a href="/todo/change/<%-memo.id%>"><button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i></button></a>
+                <%}%>
+                <a href="/todo/edit/<%-memo.id%>"><button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></button></a>
+                <a href="/todo/delete/<%-memo.id%>" onclick="return confirm('Are you sure?')"><button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button></a>
+              </td>
+            </tr>
+            <%})%>
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+
+</body>
+
+</html>

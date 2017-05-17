@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/gray-fox-2017/express-restful-crud/issues"
   },
-  "homepage": "https://github.com/gray-fox-2017/express-restful-crud#readme"
+  "homepage": "https://github.com/gray-fox-2017/express-restful-crud#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "pg": "^6.1.5",
+    "sequelize": "^3.30.4",
+    "strftime": "^0.10.0"
+  }
 }
