@@ -1,0 +1,60 @@
+<% include ../partials/header %>
+  <div class="container">
+    <div class="row">
+      <h4>Edit Todo</h4>
+      <form class="" action="/todos/update/<% todos.id %>" method="post" class="col s12">
+        <div class="row">
+          <div class="input-field col s6">
+            <label for="task">
+              TASK
+              <input type="text" name="task" value="<% todos.task %>" id="task" class="validate">
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="">Checklist Completed</label><br>
+          </div>
+          <div class="input-field col m4 s6">
+            <% if(todos.completed){ %>
+              <label for="complete">
+                Completed
+                <input type="checkbox" name="completed" value="<%= todos.completed %>" id="completed" checked/>
+              </label>
+            <% } else { %>
+              <label for="completed">
+                Completed
+                <input type="checkbox" name="" value="<%= todos.completed %>" />
+              </label>
+            <% } %>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="input-field col s6">
+            <select class="validate" name="user_id">
+              <% users.forEach((user)=>{ %>
+                <% if(!user.User == null){ %>
+                  <% if(user.id == todos.User.id){ %>
+                    <option value="<%= user.id %>" selected="selected"><%= user.name %></option>
+                  <% } else { %>
+                    <option value="<%= user.id %>"><%= user.name %></option>
+                  <% } %>
+                <%  } else { %>
+                  <option value="<%= user.id%>"><%= user.name%></option>
+                <%  } %>
+              <% }) %>
+            </select>
+            <label for="">Select User</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <button type="submit" name="button" class="btn">Submit</button>
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+<% include ../partials/footer %>
