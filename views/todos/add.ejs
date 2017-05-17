@@ -1,0 +1,26 @@
+<%- include ../partials/header.ejs %>
+
+  <div class="container">
+    <div class="row">
+      <h4><%= `CRUD USER`%></h4>
+      <form action="/users/create" method="post">
+        <div class="row">
+          <div class="input-field col s6">
+              <input placeholder="Input Task" name="name" id="name" type="text" class="validate">
+              <label for="name">Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+              <input placeholder="Input Task" name="email" id="email" type="text" class="validate">
+              <label for="email">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <button class = "btn" type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

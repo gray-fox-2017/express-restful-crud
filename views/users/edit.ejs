@@ -1,0 +1,32 @@
+
+
+<%- include ../partials/header.ejs %>
+
+
+  <div class="container">
+    <div class="row">
+      <h4><%= `Edit User` %></h4>
+      <form action="/users/edit/<%= users.id %>" method="post" class="col s12">
+        <div class="row">
+          <div class="col s6">
+          <input type="text" id = "name" name="name" value="<%= users.id %>" class="validate">
+          <label for="name">Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
+          <input type="text" id = "email" name="email" value="<%= users.email %>" class="validate">
+          <label for="email">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6">
+            <button class = "btn" type="submit" name="button">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include ../partials/footer.ejs %>

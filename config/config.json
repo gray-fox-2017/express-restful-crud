@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "nugraha",
+    "password": "nugraha",
+    "database": "exTodo.db",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
