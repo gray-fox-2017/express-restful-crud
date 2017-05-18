@@ -1,0 +1,61 @@
+<%- include ./partials/header.ejs %>
+<div class="container">
+
+<h1>Input Users</h1>
+<form action="/users/create" method="post">
+  <table class="table table-striped">
+    <tr>
+      <td>First Name </td>
+      <td>:</td>
+      <td><input type="text" name="firstname" placeholder="First Name"></td>
+    </tr>
+
+    <tr>
+      <td>Last Name </td>
+      <td>:</td>
+      <td><input type="text" name="lastname" placeholder="Last Name"></td>
+    </tr>
+
+    <tr>
+      <td>Email </td>
+      <td>:</td>
+      <td ><input  type="text" name="email" placeholder="Input Alamat Email"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><button type="submit" class="btn btn-default">Add User</button></td>
+    </tr>
+  </table>
+</form>
+
+
+        <h1>Rekap Users</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email </th>
+            <th>User id</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% let i=1; user.forEach((tampil) =>{ %>
+          <tr>
+            <th><%= i++ %></th>
+            <th><%= tampil.firstname%></th>
+            <th><%= tampil.lastname%></th>
+            <th><%= tampil.email%></th>
+            <th><%= tampil.id%></th>
+            <th><a href="/users/delete/<%= tampil.id %>"onclick="return confirm('Delete')">Delete</a> <a href="/users/edit/<%= tampil.id %>">Edit</a></th>
+          </tr>
+          <%     })  %>
+        </tbody>
+      </table>
+    </div>
+
+  </body>
+</html>
