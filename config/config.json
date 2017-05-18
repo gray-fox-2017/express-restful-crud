@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "zulfikarannur",
+    "password": "zoelfiekar231094",
+    "host": "127.0.0.1",
+    "port" : "5432",
+    "database" : "restfulcrud",
+    "dialect": "postgres"
+  }
+}
