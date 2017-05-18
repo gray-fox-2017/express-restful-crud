@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <button type="button" name="Home"><a href="/">Home</a></button>
+    <h1><marquee><%= title %></marquee></h1>
+    <h3>This is <%= title %></h3>
+    <form action="/users/edit/<%-user.id%>/<%-todo.id%>" method="post">
+      <p>Edit: </p>
+      <input type="text" name="title" value="<%-todo.title%>" placeholder="input task here"><br>
+      <input type="submit" value="update">
+    </form>
+  </body>
+</html>

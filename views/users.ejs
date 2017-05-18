@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <button type="button" name="Home"><a href="/">Home</a></button>
+    <h1><marquee><%= title %></marquee></h1>
+    <h3>This is <%= title %></h3>
+    <form action="/users/<%-user.id%>" method="post">
+      <p>Please input task here: </p>
+      <input type="hidden" name="id" value="<%-user.id%>">
+      <input type="text" name="task" placeholder="input task here"><br>
+      <input type="submit" value="submit task">
+    </form>
+    <table>
+      <%if(todos.length>0){%>
+      <tr>
+        <th>Completion</th>
+        <th>Title</th>
+        <th>Owner</th>
+        <th>Created At</th>
+      </tr>
+      <%todos.forEach((todo)=>{%>
+      <tr>
+      <%if(todo.is_complete==false){%>
+        <td>[_]</td>
+      <%}else {%>
+        <td>[X]</td>
+      <%}%>
+        <td><%=todo.title%></td>
+        <td><%=user.email%></td>
+        <td><%=todo.createdAt%></td>
+        <td><button type="button" name="complete"><a href="/users/completion/<%-user.id%>/<%-todo.id%>">complete</a></button></td>
+        <td><button type="button" name="edit"><a href="/users/edit/<%-user.id%>/<%-todo.id%>">edit</a></button></td>
+        <td><button type="button" name="delete"><a href="/users/delete/<%-user.id%>/<%-todo.id%>" onclick="return confirm('Are you sure?')">delete</a></button></td>
+      </tr>
+      <%})} else {%>
+      <p>There's no task available</p>
+      <%}%>
+    </table>
+  </body>
+</html>

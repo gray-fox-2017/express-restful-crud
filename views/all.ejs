@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <button type="button" name="Home"><a href="/">Home</a></button>
+    <h1><marquee><%= title %></marquee></h1>
+    <h3>This is <%= title %></h3>
+    <table>
+      <%if(todos.length>0){%>
+      <tr>
+        <th>Completion</th>
+        <th>Title</th>
+        <th>Owner</th>
+        <th>Created At</th>
+      </tr>
+      <%todos.forEach((todo)=>{%>
+      <tr>
+      <%if(todo.is_complete==false){%>
+        <td>[_]</td>
+      <%}else {%>
+        <td>[X]</td>
+      <%}%>
+        <td><%=todo.title%></td>
+        <td><%=todo.User.email%></td>
+        <td><%=helper.dater(todo.createdAt)%></td>
+      </tr>
+      <%})} else {%>
+      <p>There's no task available</p>
+      <%}%>
+    </table>
+  </body>
+</html>
