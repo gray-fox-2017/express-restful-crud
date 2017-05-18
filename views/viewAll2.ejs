@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Memo List 2</title>
+    <%- include('./partials/head.ejs')%>
+  </head>
+  <body>
+    <div class="container">
+      <div class="center-align">
+        <h1>Memo List</h1>
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Email</th>
+              <th>Complete</th>
+              <th>createdAt</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% todos.forEach( (todo)=>{ %>
+            <tr>
+             <td><%= todo.id %></td>
+             <td><%= todo.title %></td>
+             <td class="email<%=todo.user_id%>"><% if (todo.User !== null) {%><%= todo.User.email%><%}%></td>
+             <td>
+               <% if (todo.is_complete == 0) { %>
+                 <a href='/users/complete/<%= todo.id%>/<%= todo.user_id %>' target = '_self' class="btn">DONE</a></td>
+              <% } else  if (todo.is_complete == 1) { %>
+                <i class="small material-icons">done</i>
+              <% } %>
+             <td><%= helper.changeDate(todo.createdAt) %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+
+  </body>
+  <%- include('./partials/footer.ejs')%>
+</html>

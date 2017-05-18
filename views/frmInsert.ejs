@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Insert Memo</title>
+    <%- include('./partials/head.ejs')%>
+  </head>
+  <body>
+    <div class="container">
+      <div class="center-align">
+        <h1>Memo</h1>
+      </div>
+      <form method="post" action="/users/insert">
+        <input type="hidden" readonly value=<%= id%> name="user_id">
+        <input type="text" required placeholder="title" name ="title"/>
+        <input type ="submit" value="Insert new todo" class="btn-large">
+      <form>
+    </div>
+
+
+  </body>
+  <%- include('./partials/footer.ejs')%>
+</html>
