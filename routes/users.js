@@ -3,6 +3,19 @@ const db = require('../models');
 var router = express.Router();
 
 /* GET users listing. */
+
+router.get('/create',function(req,res,next) {
+  res.render('userCreate');
+});
+
+router.post('/create',function(req,res,next) {
+  let email = req.body.email;
+  db.User.create({email: email})
+    .then (() => {
+      res.redirect('/');
+    });
+});
+
 //router.get('/', function(req, res, next) {
 //  res.send('respond with a resource');
 //});
@@ -20,15 +33,15 @@ var router = express.Router();
 //    });
 //});
 
-router.get('/:id', (req, res, next) => {
-  let id = req.params.id;
-  db.User.findById(id)
-    .then(user => {
-      user.getTodos()
-        .then (todos => {
-          res.render('users',{'todos':todos, title:'MEMO by svi'});
-        });
-    });
-});
+//router.get('/:id', (req, res, next) => {
+//  let id = req.params.id;
+//  db.User.findById(id)
+//    .then(user => {
+//      user.getTodos()
+//        .then (todos => {
+//          res.render('users',{'todos':todos, title:'MEMO by svi'});
+//        });
+//    });
+//});
 
 module.exports = router;

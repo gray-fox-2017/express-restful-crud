@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>MEMO by svi!</title>
+    <% include ../partials/header.ejs %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <a href="/"><h1>MEMO by svi!</h1></a>
+        </div>
+      </div>
+    </div>
+    <div class="container center">
+      <div class="row center">
+        <div class="col s12">
+          <table class="striped">
+            <thead>
+              <tr>
+                <th><h5>No. </h5></th>
+                <th><h5>Status</h5></th>
+                <th><h5>Task</h5></th>
+                <th><h5>Created at</h5></th>
+                <th><h5>User Email</h5></th>
+                <th><h5>Options</h5></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% let num=1 %>
+              <% todos.forEach(todo => { %>
+              <tr>
+                <td><%= num %></td>
+                <% num += 1 %>
+                <td><% if(todo.is_complete){ %>
+                  <i class="small material-icons">thumb_up</i>
+                  <% } else { %>
+                  <i class="small material-icons">thumb_down</i>
+                  <% } %></td>
+                <td><%= todo.title %></td>
+                <td><%= helper.dateParser(todo.createdAt) %></td>
+                <td><%= todo.User.email || "" %></td>
+                <td><a class="waves-effect waves-light btn" href="./tasks/edit/<%- todo.id %>"><i class="small material-icons">done</i></a>
+                  <a class="waves-effect waves-light btn red" href="./tasks/delete/<%- todo.id %>" onclick="return confirm('Are you sure')"><i class="small material-icons">delete</i></a></td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <form class="" action="/tasks/create" method="post">
+          <div class="input-field col s4 center">
+            <input placeholder="Email" name="email" type="email" class="validate">
+          </div>
+          <div class="input-field col s7 center">
+            <input placeholder="New Task" name="newTask" type="text" class="validate">
+          </div>
+          <div class="input-field col s1 left">
+            <button type="submit" class="btn-floating btn-large waves-effect waves-light orange"><i class="material-icons right">add</i></button>
+          </div>
+      </div>
+        </form>
+    </div>
+
+  </body>
+</html>

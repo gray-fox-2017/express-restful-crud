@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/header.ejs %>
+    <title>MEMO by svi!</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 center">
+          <a href="/"><h1>MEMO by svi!</h1></a>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <form action="/users/create" method="post">
+        <div class="row">
+          <div class="col s12">
+            <label for="email"> Email: 
+              <input type="email" name="email" placeholder:"Email">
+            </label>
+            <br/>
+            <button type="submit" class="waves-effect waves-light btn-large">Sign Up</button>
+      </form>
+          </div>
+        </div>
+    </div>
+  </body>
+</html>
