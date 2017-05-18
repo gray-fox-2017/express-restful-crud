@@ -1,0 +1,1 @@
+<h1><marquee><%= title %> - ini viewnya pake partial lhoo</marquee></h1>

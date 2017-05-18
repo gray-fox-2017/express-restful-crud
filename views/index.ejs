@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <button type="button" name="All"><a href="/all">View All Task</a></button>
+    <%- include ./partial/partial.js %>
+    <p>Welcome to <%= title %></p>
+    <form action="/" method="post">
+      <p>Input your email to register</p>
+      <input type="text" name="email" placeholder="input email here"><br>
+      <input type="submit" value="submit email">
+    </form>
+    <table>
+      <%if(users.length>0){%>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+      </tr>
+        <%users.forEach((user)=>{%>
+      <tr>
+        <td><%=user.id%></td>
+        <td><%=user.email%></td>
+        <td><button type="button"><a href="/users/<%-user.id%>">Go to your todo list</a></button></td>
+      </tr>
+      <%
+        })
+      } else {%>
+      <p>There's no user available</p>
+      <%
+      }
+      %>
+    </table>
+  </body>
+</html>
