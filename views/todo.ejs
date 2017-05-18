@@ -1,0 +1,36 @@
+<%- include ./partials/header.ejs %>
+
+<div class="container">
+<h1 class="">HALAMAN TODO</h1>
+
+<div class="row">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Tittle</th>
+      <th>Memo </th>
+      <th>Created At </th>
+      <th>Update At </th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% let i=1; data.forEach((tampil) =>{
+    %>
+    <tr>
+      <th><%= i++ %></th>
+      <th><%= tampil.title %></th>
+      <th><%= tampil.memo %></th>
+        <th><%= tampil.createdAt %></th>
+        <th><%= tampil.updatedAt %></th>
+      <th><a href="/todo/delete/<%= tampil.id %>"onclick="return confirm('Delete')">Delete</a> <a href="/todo/edit/<%= tampil.id %>">Edit</a></th>
+    </tr>
+  </tbody>
+  <%   }) %>
+</table>
+</div>
+
+</div>
+  </body>
+</html>
