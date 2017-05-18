@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title><%= title %></title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container center">
+            <div class="row center">
+                <div class="col s12">
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th><h5>ID</h5></th>
+                                <th><h5>Status</h5></th>
+                                <th><h5>Tasks</h5></th>
+                                <th><h5>Created at</h5></th>
+                                <th><h5>Options</h5></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% todos.forEach(todo => { %>
+                            <tr>
+                                <td><%- todo.id %></td>
+                                <!--<td><%- (todo.is_complete) ? 'X' : ' ' %></td>-->
+                                <td><% if(todo.is_complete){ %>
+                                    <i class="small material-icons">thumb_up</i>
+                                    <% } else { %>
+                                    <i class="small material-icons">thumb_down</i>
+                                    <% } %></td>
+                                <td><%- todo.title %></td>
+                                <td><%- todo.createdAt %></td>
+                                <td><a class="waves-effect waves-light btn" href="./user/edit/<%- todo.id %>"><i class="small material-icons">done</i></a>
+                                    <a class="waves-effect waves-light btn red" href="./user/delete/<%- todo.id %>" onclick="return confirm('Are you sure')"><i class="small material-icons">delete</i></a></td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <form class="" action="" method="post">
+                    <div class="input-field col s9 center">
+                        <input placeholder="New Task" name="newTask" type="text" class="validate">
+                    </div>
+                    <div class="input-field col s3 left">
+                        <button type="submit" class="btn-floating btn-large waves-effect waves-light orange"><i class="material-icons right">add</i></button>
+                    </div>
+            </div>
+                </form>
+        </div>
+
+    </body>
+</html>
