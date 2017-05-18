@@ -6,7 +6,7 @@
   </head>
   <body>
     <button type="button" name="Home"><a href="/">Home</a></button>
-    <h1><marquee><%= title %></marquee></h1>
+    <%- include ./partial/partial.js %>
     <h3>This is <%= title %></h3>
     <form action="/users/<%-user.id%>" method="post">
       <p>Please input task here: </p>
