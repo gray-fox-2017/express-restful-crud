@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>To-do-List Mu!</title>
+    <%- include ./partial/stylenya.ejs %>
+  </head>
+  <body>
+    <div style="padding: 10% 30% 0 30%;">
+    <form method="post" action="/">
+      <h3 class="flow-text">Silahkan masukkan ID username mu untuk melihat daftar taskmu!</h3>
+      <input class="material-icons prefix" type="text" name="aidi" placeholder="ID username">
+      <button class="btn waves-effect waves-light" type="submit">Go!</button>
+    </form>
+  </div>
+  <div style="padding: 5% 30% 10% 30%">
+    <table class="striped">
+      <thead >
+      <tr>
+        <th style="padding-left: 15px;">ID</th>
+        <th>Username</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% for (let i=0; i<data.length;i++) { %>
+        <tr>
+          <td style="padding-left: 15px;"><%= data[i].id %></td>
+          <td><%= data[i].username %></td>
+          <td><%= data[i].email %></td>
+        </tr>
+      <% } %>
+    </tbody>
+    </table>
+    <button style="margin: 25% 7% 0 23%" type="button" class="btn waves-effect waves-light" onclick="window.location.href='/all'">Show All To Do List</button>
+  </div>
+  </body>
+</html>
