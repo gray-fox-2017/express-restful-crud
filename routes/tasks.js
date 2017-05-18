@@ -9,7 +9,10 @@ router.get('/', function(req, res, next) {
     { include: [{ model: db.User }]}
   )
   .then((todos) => {
-    res.render('tasks', {data: todos});
+    db.User.findAll()
+    .then((users) => {
+      res.render('tasks', {data: todos, helper: helper, users: users});
+    })
   })
   .catch((err) => {
     console.log(err);
@@ -30,6 +33,36 @@ router.post('/', function(req, res, next){
     console.log(err);
   });
 })
+
+router.get('/edit/:id', function(req, res, next) {
+  let id = req.params.id
+
+  db.Todo.find(
+    { include: [{ model: db.User }]},
+    {where: {id: id}}
+  )
+  .then((todo) => {
+    db.User.findAll()
+    .then((users) => {
+      res.render('edit', {todo: todo, users: users})
+    })
+  })
+});
+
+router.post('/edit/:id', function(req, res, next) {
+  let id = req.params.id
+
+  let title = req.body.task
+  let UserId = req.body.UserId
+  let is_complete = req.body.is_complete
+  db.Todo.update(
+    {title: title, UserId: UserId, is_complete: is_complete},
+    {where: {id: id}}
+  )
+  .then(() => {
+    res.redirect('/tasks')
+  })
+});
 
 router.get('/delete/:id', function(req, res, next) {
   let id = req.params.id

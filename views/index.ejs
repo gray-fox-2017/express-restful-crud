@@ -43,6 +43,11 @@
       <div class="center-align">
         <a href="/tasks">Lihat Semua TODO</a>
       </div>
+      <% if(error !== null) {%>
+        <p class="center-align">
+          <%= error %>
+        </p>
+      <% } %>
     </div>
   </body>
   <script type="text/javascript">

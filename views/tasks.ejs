@@ -9,8 +9,13 @@
             <label for="task">Task</label>
           </div>
           <div class="input-field col s6">
-            <input type="text" id="UserId" name="UserId" value="" required class="validate">
-            <label for="UserId">User ID</label>
+            <select name="UserId">
+              <option value="" disabled selected>Choose email to asign this task</option>
+              <% for(let i=0; i<users.length; i++) {%>
+              <option value="<%= users[i].id %>"><%= users[i].email %></option>
+              <% } %>
+            </select>
+            <label>Select Email</label>
           </div>
         </div>
         <button class="waves-effect waves-light btn" type="submit">Submit</button>
@@ -33,15 +38,15 @@
           <% data.forEach((d) => {  %>
           <tr>
             <td class="titleTodo"><%= d.title %></td>
-            <% if (!data.is_complete || null) {%>
+            <% if (d.is_complete == null || d.is_complete == false) {%>
               <td>belum selesai</td> <% } else { %>
               <td>selesai</td> <% } %>
             <% if (d.User !== null) {%>
             <td><%= d.User.email %></td><% } else { %>
             <td>-</td> <% } %>
-            <td><%= d.createdAt %></td>
+            <td><%= helper.formatDate(d.createdAt) %></td>
             <td>
-              <a href='#modal2'>edit</a>
+              <a href='/tasks/edit/<%= d.id %>'>edit</a>
               <a href="#modal<%= d.id %>">delete</a>
             </td>
           </tr>
@@ -59,24 +64,12 @@
           <% }) %>
         </tbody>
       </table>
-
-      <!-- Modal Structure EDIT -->
-      <div id="modal2" class="modal bottom-sheet">
-        <div class="modal-content">
-          <h4>Modal Header</h4>
-          <p>A bunch of text</p>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-        </div>
-      </div>
-
-
-
-
     </div>
   </body>
   <script type="text/javascript">
+    $(document).ready(function() {
+      $('select').material_select();
+    });
     $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
