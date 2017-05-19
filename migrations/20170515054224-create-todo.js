@@ -14,7 +14,7 @@ module.exports = {
       is_complete: {
         type: Sequelize.BOOLEAN
       },
-      id_user: {
+      UserId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
