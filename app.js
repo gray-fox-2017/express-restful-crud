@@ -10,22 +10,23 @@ var users = require('./routes/users');
 
 var app = express();
 
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('memo', 'postgres', 'jack1899', {
-  host: 'localhost',
-  dialect: 'postgres',
-  pool: {
-    max: 9,
-    min: 0,
-    idle: 10000
-  }
-});
-
-sequelize.authenticate().then(() => {
-  console.log("Success!");
-}).catch((err) => {
-  console.log(err);
-});
+// cek koneksi
+// const Sequelize = require('sequelize');
+// const sequelize = new Sequelize('memo', 'postgres', 'jack1899', {
+//   host: 'localhost',
+//   dialect: 'postgres',
+//   pool: {
+//     max: 9,
+//     min: 0,
+//     idle: 10000
+//   }
+// });
+//
+// sequelize.authenticate().then(() => {
+//   console.log("Success!");
+// }).catch((err) => {
+//   console.log(err);
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
