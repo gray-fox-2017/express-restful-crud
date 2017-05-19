@@ -1,0 +1,83 @@
+<%- include ./partials/header.ejs %>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col s6">
+          <h4>Edit Task</h4>
+          <form class="/tasks/edit/<%= todo.id %>" action="" method="post">
+            <div class="row">
+              <div class="input-field col s12">
+                <input type="text" id="task" name="task" value="<%= todo.title %>" required class="validate">
+                <label for="task">Tittle Task</label>
+              </div>
+              <div class="input-field col s12">
+                <select name="UserId">
+                  <% for(let i=0; i<users.length; i++) {%>
+                    <% if(users[i].email == todo.User.email) { %>
+                      <option value="<%= users[i].id %>" selected><%= users[i].email %></option>
+                    <% } else { %>
+                      <option value="<%= users[i].id %>"><%= users[i].email %></option>
+                      <% } %>
+                  <% } %>
+                </select>
+                <label>Select Email</label>
+              </div>
+              <div class="input-field col s12">
+                <p>
+                  Completeness <br>
+                  <% if(todo.is_complete == true) {%>
+                    <input type="radio" name="is_complete" id="selesai" value="true" checked/>
+                    <label for="selesai">Selesai</label>
+                    <input type="radio" name="is_complete" id="belum" value="false"/>
+                    <label for="belum">Belum</label> <%} else {%>
+                    <input type="radio" name="is_complete" id="selesai" value="true" />
+                    <label for="selesai">Selesai</label>
+                    <input type="radio" name="is_complete" id="belum" value="false" checked/>
+                    <label for="belum">Belum</label>
+                  <% } %>
+                </p>
+              </div>
+            </div>
+            <br><br>
+            <button class="waves-effect waves-light btn" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+      <br><br>
+    </div>
+  </body>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+    $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+    });
+
+    // When element .element clicked
+    $('.element').click(function(e){
+        // Set the content in a variable
+        // This can be dynamically generated from elements on the page
+        // E.g. var content = $('#textarea').val(); - This will grab the value of a form element with the ID #textarea
+        // OR var content = $('#div').html(); - Will get the content from a div with the ID #div
+
+        // Satic text content for this example
+        var content = $('.titleTodo').html();
+
+        // Call the function to open the popup with the content from var = content
+        openPopup(content);
+    });
+    // Function to open the popup
+    function openPopup(content){
+        winpops = window.open(
+            // Setup - URL,name,specs,replace
+            '',
+            'Popup Name',
+            'fullscreen=no, toolbar=yes, status=yes, menubar=yes, scrollbars=yes, resizable=yes, directories=yes, location=yes, width=500, height=400, left=100, top=100, screenX=100, screenY=100');
+
+        // Write the content to the popup
+        winpops.document.write('<div id="content">'+content+'</div>');
+    }
+  </script>
+</html>
