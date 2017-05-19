@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include partial/partial.ejs %>
+</head>
+
+<body>
+  <h1><%= `Your Task(s) ${data[0].User.username}`%></h1>
+  <p><a href="/add/task">Add</a></p>
+  <div>
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Task</th>
+          <th>Email</th>
+          <th>Completion</th>
+          <th>Created at</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%
+        data.forEach((d) => {
+      %>
+        <tr>
+          <td>
+            <%= d.id %>
+          </td>
+          <td>
+            <%= d.title %>
+          </td>
+          <td>
+            <%= d.User.email %>
+          </td>
+          <td>
+            <%= time.timeSet(d.completed) %>
+          </td>
+          <td>
+            <%= d.createdAt %>
+          </td>
+          <td>
+            <a href="/users/edit/<%- d.id %>"><button class="btn-floating waves-effect waves-light lightgreen">edit</button></a>
+            <a href="/users/delete/<%- d.id %>"><button class="btn-floating waves-effect waves-light lightgreen">delete</button></a>
+          </td>
+        </tr>
+        <%
+    })
+    %>
+  </div>
+</body>
+
+</html>

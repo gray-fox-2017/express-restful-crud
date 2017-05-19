@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include partial/partial.ejs %>
+</head>
+
+<body>
+  <h1><%= `All tasks`%></h1>
+  <div>
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%
+        data.forEach((d) => {
+      %>
+        <tr>
+          <td>
+            <%= d.id %>
+          </td>
+          <td>
+            <%= d.username %>
+          </td>
+          <td>
+            <%= d.email %>
+          </td>
+        </tr>
+        <%
+    })
+    %>
+  </div>
+</body>
+
+</html>
